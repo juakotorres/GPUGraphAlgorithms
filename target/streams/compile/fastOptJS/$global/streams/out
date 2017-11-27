@@ -1,0 +1,79 @@
+[0m[[0m[0minfo[0m] [0m[0mFast optimizing /home/juaki/Documents/Universidad/2017-2/GPU/VisScala/target/scala-2.12/visscala-fastopt.js[0m
+[0m[[0m[0mdebug[0m] [0m[0mLinker: Compute reachability: 52035 us[0m
+[0m[[0m[31merror[0m] [0m[0mReferring to non-existent class org.graphstream.graph.implementations.SingleGraph[0m
+[0m[[0m[31merror[0m] [0m[0m  called from tutorial.webapp.TutorialApp$.main([java.lang.String)scala.Unit[0m
+[0m[[0m[31merror[0m] [0m[0m  called from core module module initializers[0m
+[0m[[0m[31merror[0m] [0m[0minvolving instantiated classes:[0m
+[0m[[0m[31merror[0m] [0m[0m  tutorial.webapp.TutorialApp$[0m
+[0m[[0m[0mdebug[0m] [0m[0m    instantiated from core module module initializers[0m
+[0m[[0m[31merror[0m] [0m[0mReferring to non-existent method org.graphstream.graph.implementations.SingleGraph.setAutoCreate(scala.Boolean)scala.Unit[0m
+[0m[[0m[31merror[0m] [0m[0m  called from tutorial.webapp.TutorialApp$.main([java.lang.String)scala.Unit[0m
+[0m[[0m[31merror[0m] [0m[0m  called from core module module initializers[0m
+[0m[[0m[31merror[0m] [0m[0minvolving instantiated classes:[0m
+[0m[[0m[31merror[0m] [0m[0m  tutorial.webapp.TutorialApp$[0m
+[0m[[0m[0mdebug[0m] [0m[0m    instantiated from core module module initializers[0m
+[0m[[0m[31merror[0m] [0m[0mReferring to non-existent method org.graphstream.graph.implementations.SingleGraph.addEdge(java.lang.String,java.lang.String,java.lang.String)org.graphstream.graph.Edge[0m
+[0m[[0m[31merror[0m] [0m[0m  called from tutorial.webapp.TutorialApp$.main([java.lang.String)scala.Unit[0m
+[0m[[0m[31merror[0m] [0m[0m  called from core module module initializers[0m
+[0m[[0m[31merror[0m] [0m[0minvolving instantiated classes:[0m
+[0m[[0m[31merror[0m] [0m[0m  tutorial.webapp.TutorialApp$[0m
+[0m[[0m[0mdebug[0m] [0m[0m    instantiated from core module module initializers[0m
+[0m[[0m[31merror[0m] [0m[0mReferring to non-existent method org.graphstream.graph.implementations.SingleGraph.setStrict(scala.Boolean)scala.Unit[0m
+[0m[[0m[31merror[0m] [0m[0m  called from tutorial.webapp.TutorialApp$.main([java.lang.String)scala.Unit[0m
+[0m[[0m[31merror[0m] [0m[0m  called from core module module initializers[0m
+[0m[[0m[31merror[0m] [0m[0minvolving instantiated classes:[0m
+[0m[[0m[31merror[0m] [0m[0m  tutorial.webapp.TutorialApp$[0m
+[0m[[0m[0mdebug[0m] [0m[0m    instantiated from core module module initializers[0m
+[0m[[0m[31merror[0m] [0m[0mReferring to non-existent method org.graphstream.graph.implementations.SingleGraph.display()org.graphstream.ui.swingViewer.Viewer[0m
+[0m[[0m[31merror[0m] [0m[0m  called from tutorial.webapp.TutorialApp$.main([java.lang.String)scala.Unit[0m
+[0m[[0m[31merror[0m] [0m[0m  called from core module module initializers[0m
+[0m[[0m[31merror[0m] [0m[0minvolving instantiated classes:[0m
+[0m[[0m[31merror[0m] [0m[0m  tutorial.webapp.TutorialApp$[0m
+[0m[[0m[0mdebug[0m] [0m[0m    instantiated from core module module initializers[0m
+[0m[[0m[31merror[0m] [0m[0mReferring to non-existent method org.graphstream.graph.implementations.SingleGraph.<init>(java.lang.String)[0m
+[0m[[0m[31merror[0m] [0m[0m  called from tutorial.webapp.TutorialApp$.main([java.lang.String)scala.Unit[0m
+[0m[[0m[31merror[0m] [0m[0m  called from core module module initializers[0m
+[0m[[0m[31merror[0m] [0m[0minvolving instantiated classes:[0m
+[0m[[0m[31merror[0m] [0m[0m  tutorial.webapp.TutorialApp$[0m
+[0m[[0m[0mdebug[0m] [0m[0m    instantiated from core module module initializers[0m
+[0m[[0m[31merror[0m] [0m[0morg.scalajs.core.tools.linker.LinkingException: There were linking errors[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.scalajs.core.tools.linker.frontend.BaseLinker.linkInternal(BaseLinker.scala:160)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.scalajs.core.tools.linker.frontend.BaseLinker.linkInternal(BaseLinker.scala:108)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.scalajs.core.tools.linker.frontend.LinkerFrontend.$anonfun$link$3(LinkerFrontend.scala:63)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.scalajs.core.tools.logging.Logger.time(Logger.scala:28)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.scalajs.core.tools.logging.Logger.time$(Logger.scala:26)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.scalajs.sbtplugin.Loggers$SbtLoggerWrapper.time(Loggers.scala:7)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.scalajs.core.tools.linker.frontend.LinkerFrontend.link(LinkerFrontend.scala:62)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.scalajs.core.tools.linker.Linker.$anonfun$link$1(Linker.scala:52)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:12)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.scalajs.core.tools.linker.Linker.guard(Linker.scala:69)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.scalajs.core.tools.linker.Linker.link(Linker.scala:50)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.scalajs.core.tools.linker.ClearableLinker.$anonfun$link$1(ClearableLinker.scala:52)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.scalajs.core.tools.linker.ClearableLinker.$anonfun$link$1$adapted(ClearableLinker.scala:52)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.scalajs.core.tools.linker.ClearableLinker.linkerOp(ClearableLinker.scala:63)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.scalajs.core.tools.linker.ClearableLinker.link(ClearableLinker.scala:52)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.scalajs.sbtplugin.ScalaJSPluginInternal$.$anonfun$scalaJSStageSettings$11(ScalaJSPluginInternal.scala:310)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.util.FileFunction$.$anonfun$cached$1(FileFunction.scala:73)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.util.FileFunction$.$anonfun$cached$4(FileFunction.scala:147)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.util.Difference.apply(Tracked.scala:313)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.util.Difference.apply(Tracked.scala:293)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.util.FileFunction$.$anonfun$cached$3(FileFunction.scala:143)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.util.Difference.apply(Tracked.scala:313)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.util.Difference.apply(Tracked.scala:288)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.util.FileFunction$.$anonfun$cached$2(FileFunction.scala:142)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.scalajs.sbtplugin.ScalaJSPluginInternal$.$anonfun$scalaJSStageSettings$10(ScalaJSPluginInternal.scala:315)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.std.Transform$$anon$3.$anonfun$apply$2(System.scala:44)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.std.Transform$$anon$4.work(System.scala:64)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.Execute.$anonfun$submit$2(Execute.scala:257)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.internal.util.ErrorHandling$.wideConvert(ErrorHandling.scala:16)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.Execute.work(Execute.scala:266)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.Execute.$anonfun$submit$1(Execute.scala:257)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.ConcurrentRestrictions$$anon$4.$anonfun$submitValid$1(ConcurrentRestrictions.scala:167)[0m
+[0m[[0m[31merror[0m] [0m[0m	at sbt.CompletionService$$anon$2.call(CompletionService.scala:32)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.util.concurrent.FutureTask.run(FutureTask.java:266)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.util.concurrent.FutureTask.run(FutureTask.java:266)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.lang.Thread.run(Thread.java:748)[0m
+[0m[[0m[31merror[0m] [0m[0m(compile:[31mfastOptJS[0m) org.scalajs.core.tools.linker.LinkingException: There were linking errors[0m

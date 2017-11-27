@@ -1,0 +1,18 @@
+[0m[[0m[0mdebug[0m] [0m[0mStarting process: node[0m
+[0m[[0m[0mdebug[0m] [0m[0mStarting process: node[0m
+[0m[[0m[0mdebug[0m] [0m[0mStarting process: node[0m
+[0m[[0m[0mdebug[0m] [0m[0mStarting process: node[0m
+[0m[[0m[31merror[0m] [0m[0m/home/juaki/Documents/Universidad/2017-2/GPU/VisScala/target/scala-2.12/visscala-test-fastopt.js:5263[0m
+[0m[[0m[31merror[0m] [0m[0m  this.runner$1.receiveMessage__T__s_Option(msg)[0m
+[0m[[0m[31merror[0m] [0m[0m                ^[0m
+[0m[[0m[31merror[0m] [0m[0mTypeError: Cannot read property 'receiveMessage__T__s_Option' of null[0m
+[0m[[0m[31merror[0m] [0m[0m    at $c_Lorg_scalajs_testinterface_internal_Slave.receiveMessage__p1__T__V (/home/juaki/Documents/Universidad/2017-2/GPU/VisScala/target/scala-2.12/visscala-test-fastopt.js:5263:17)[0m
+[0m[[0m[31merror[0m] [0m[0m    at /home/juaki/Documents/Universidad/2017-2/GPU/VisScala/target/scala-2.12/visscala-test-fastopt.js:5257:14[0m
+[0m[[0m[31merror[0m] [0m[0m    at $c_sjsr_AnonFunction1.apply__O__O (/home/juaki/Documents/Universidad/2017-2/GPU/VisScala/target/scala-2.12/visscala-test-fastopt.js:17898:23)[0m
+[0m[[0m[31merror[0m] [0m[0m    at $c_Lorg_scalajs_testinterface_internal_JSRPC$.$c_Lorg_scalajs_testcommon_RPCCore.handleMessage__T__V (/home/juaki/Documents/Universidad/2017-2/GPU/VisScala/target/scala-2.12/visscala-test-fastopt.js:3275:23)[0m
+[0m[[0m[31merror[0m] [0m[0m    at /home/juaki/Documents/Universidad/2017-2/GPU/VisScala/target/scala-2.12/visscala-test-fastopt.js:12038:53[0m
+[0m[[0m[31merror[0m] [0m[0m    at tryReadMsg ([stdin]:61:7)[0m
+[0m[[0m[31merror[0m] [0m[0m    at Socket.onData ([stdin]:45:5)[0m
+[0m[[0m[31merror[0m] [0m[0m    at emitOne (events.js:115:13)[0m
+[0m[[0m[31merror[0m] [0m[0m    at Socket.emit (events.js:210:7)[0m
+[0m[[0m[31merror[0m] [0m[0m    at addChunk (_stream_readable.js:264:12)[0m

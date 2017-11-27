@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="default"
+		module="visscala$sources"
+		revision="0.1"
+		conf="test-internal"
+		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, pom, scala-tool"
+		date="20171106233454"/>
+	<dependencies>
+		<module organisation="com.nativelibs4java" name="javacl">
+			<revision name="1.0.0-RC2" status="release" pubdate="20120415144912" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://code.google.com/p/javacl/" downloaded="false" searched="false" default="false" conf="default, compile, runtime(*), master(compile), runtime, default(compile), compile(*), master" position="3">
+				<license name="New BSD License (GPL-compatible)" url="http://code.google.com/p/bridj/wiki/CreditsAndLicense"/>
+				<metadata-artifact status="no" details="" size="8575" time="0" location="/home/juaki/.ivy2/cache/com.nativelibs4java/javacl/ivy-1.0.0-RC2.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/nativelibs4java/javacl/1.0.0-RC2/javacl-1.0.0-RC2.pom"/>
+				<caller organisation="default" name="visscala$sources" conf="test, compile, provided, test-internal, runtime, optional" rev="1.0.0-RC2" rev-constraint-default="1.0.0-RC2" rev-constraint-dynamic="1.0.0-RC2" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="javacl" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="30776" time="2476" location="/home/juaki/.ivy2/cache/com.nativelibs4java/javacl/srcs/javacl-1.0.0-RC2-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/nativelibs4java/javacl/1.0.0-RC2/javacl-1.0.0-RC2-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.nativelibs4java" name="javacl-core">
+			<revision name="1.0.0-RC2" status="release" pubdate="20120415144819" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://code.google.com/p/javacl/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="7">
+				<license name="New BSD License (GPL-compatible)" url="http://code.google.com/p/bridj/wiki/CreditsAndLicense"/>
+				<metadata-artifact status="no" details="" size="8571" time="0" location="/home/juaki/.ivy2/cache/com.nativelibs4java/javacl-core/ivy-1.0.0-RC2.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/nativelibs4java/javacl-core/1.0.0-RC2/javacl-core-1.0.0-RC2.pom"/>
+				<caller organisation="default" name="visscala$sources" conf="test, compile, provided, test-internal, runtime, optional" rev="1.0.0-RC2" rev-constraint-default="1.0.0-RC2" rev-constraint-dynamic="1.0.0-RC2" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="javacl-core" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="94668" time="1531" location="/home/juaki/.ivy2/cache/com.nativelibs4java/javacl-core/srcs/javacl-core-1.0.0-RC2-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/nativelibs4java/javacl-core/1.0.0-RC2/javacl-core-1.0.0-RC2-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.nativelibs4java" name="nativelibs4java-utils">
+			<revision name="1.4" status="release" pubdate="20120415144744" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://code.google.com/p/nativelibs4java/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="5">
+				<license name="New BSD License (GPL-compatible)" url="http://code.google.com/p/bridj/wiki/CreditsAndLicense"/>
+				<metadata-artifact status="no" details="" size="4568" time="0" location="/home/juaki/.ivy2/cache/com.nativelibs4java/nativelibs4java-utils/ivy-1.4.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/nativelibs4java/nativelibs4java-utils/1.4/nativelibs4java-utils-1.4.pom"/>
+				<caller organisation="default" name="visscala$sources" conf="test, compile, provided, test-internal, runtime, optional" rev="1.4" rev-constraint-default="1.4" rev-constraint-dynamic="1.4" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="nativelibs4java-utils" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="9036" time="891" location="/home/juaki/.ivy2/cache/com.nativelibs4java/nativelibs4java-utils/srcs/nativelibs4java-utils-1.4-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/nativelibs4java/nativelibs4java-utils/1.4/nativelibs4java-utils-1.4-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.nativelibs4java" name="opencl4java">
+			<revision name="1.0.0-RC2" status="release" pubdate="20120415144723" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://code.google.com/p/nativelibs4java/wiki/OpenCL" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="4">
+				<license name="New BSD License (GPL-compatible)" url="http://code.google.com/p/bridj/wiki/CreditsAndLicense"/>
+				<metadata-artifact status="no" details="" size="8206" time="0" location="/home/juaki/.ivy2/cache/com.nativelibs4java/opencl4java/ivy-1.0.0-RC2.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/nativelibs4java/opencl4java/1.0.0-RC2/opencl4java-1.0.0-RC2.pom"/>
+				<caller organisation="default" name="visscala$sources" conf="test, compile, provided, test-internal, runtime, optional" rev="1.0.0-RC2" rev-constraint-default="1.0.0-RC2" rev-constraint-dynamic="1.0.0-RC2" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="opencl4java" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="63959" time="1643" location="/home/juaki/.ivy2/cache/com.nativelibs4java/opencl4java/srcs/opencl4java-1.0.0-RC2-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/nativelibs4java/opencl4java/1.0.0-RC2/opencl4java-1.0.0-RC2-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.nativelibs4java" name="scalacl">
+			<revision name="0.2" status="release" pubdate="20110622194403" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://code.google.com/p/scalacl/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="2">
+				<license name="LGPL 2.1" url="http://www.gnu.org/copyleft/lesser.html"/>
+				<metadata-artifact status="no" details="" size="5308" time="0" location="/home/juaki/.ivy2/cache/com.nativelibs4java/scalacl/ivy-0.2.xml" searched="false" origin-is-local="false" origin-location="http://nativelibs4java.sourceforge.net/maven/com/nativelibs4java/scalacl/0.2/scalacl-0.2.pom"/>
+				<caller organisation="default" name="visscala$sources" conf="test, compile, provided, test-internal, runtime, optional" rev="0.2" rev-constraint-default="0.2" rev-constraint-dynamic="0.2" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="scalacl" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="36906" time="1199" location="/home/juaki/.ivy2/cache/com.nativelibs4java/scalacl/srcs/scalacl-0.2-sources.jar">
+						<origin-location is-local="false" location="http://nativelibs4java.sourceforge.net/maven/com/nativelibs4java/scalacl/0.2/scalacl-0.2-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.nativelibs4java" name="bridj">
+			<revision name="0.6.1" status="release" pubdate="20120415144232" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://code.google.com/p/bridj/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="1">
+				<license name="New BSD License (GPL-compatible)" url="http://code.google.com/p/bridj/wiki/CreditsAndLicense"/>
+				<metadata-artifact status="no" details="" size="6202" time="0" location="/home/juaki/.ivy2/cache/com.nativelibs4java/bridj/ivy-0.6.1.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/nativelibs4java/bridj/0.6.1/bridj-0.6.1.pom"/>
+				<caller organisation="default" name="visscala$sources" conf="test, compile, provided, test-internal, runtime, optional" rev="0.6.1" rev-constraint-default="0.6.1" rev-constraint-dynamic="0.6.1" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="bridj" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="673033" time="4131" location="/home/juaki/.ivy2/cache/com.nativelibs4java/bridj/srcs/bridj-0.6.1-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/nativelibs4java/bridj/0.6.1/bridj-0.6.1-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.google.android.tools" name="dx">
+			<revision name="1.7" status="release" pubdate="20120110213358" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://developer.android.com/guide/developing/tools/index.html" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="6">
+				<license name="Apache 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3088" time="0" location="/home/juaki/.ivy2/cache/com.google.android.tools/dx/ivy-1.7.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/google/android/tools/dx/1.7/dx-1.7.pom"/>
+				<caller organisation="default" name="visscala$sources" conf="test, compile, provided, test-internal, runtime, optional" rev="1.7" rev-constraint-default="1.7" rev-constraint-dynamic="1.7" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="dx" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="835826" time="0" location="/home/juaki/.ivy2/cache/com.google.android.tools/dx/srcs/dx-1.7-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/google/android/tools/dx/1.7/dx-1.7-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-library">
+			<revision name="2.9.2" status="release" pubdate="20120413092921" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" downloaded="false" searched="false" default="false" conf="default, compile, runtime(*), master(compile), runtime, default(compile), compile(*), master" position="0">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html
+         "/>
+				<metadata-artifact status="no" details="" size="2517" time="0" location="/home/juaki/.ivy2/cache/org.scala-lang/scala-library/ivy-2.9.2.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.9.2/scala-library-2.9.2.pom"/>
+				<caller organisation="default" name="visscala$sources" conf="test, compile, provided, test-internal, runtime, optional" rev="2.9.2" rev-constraint-default="2.9.2" rev-constraint-dynamic="2.9.2" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="scala-library" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="1159759" time="6047" location="/home/juaki/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.9.2-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.9.2/scala-library-2.9.2-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+	</dependencies>
+</ivy-report>

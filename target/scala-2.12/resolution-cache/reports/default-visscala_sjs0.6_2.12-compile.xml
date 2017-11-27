@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="default"
+		module="visscala_sjs0.6_2.12"
+		revision="0.1"
+		conf="compile"
+		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, pom, scala-tool, phantom-js-jetty"
+		date="20171124231357"/>
+	<dependencies>
+		<module organisation="org.graphstream" name="gs-core">
+			<revision name="1.1.1" status="release" pubdate="20120611062446" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://graphstream-project.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="8">
+				<license name="LGPL3" url="http://www.gnu.org/copyleft/lesser.html"/>
+				<license name="Cecill-C" url="http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html    "/>
+				<metadata-artifact status="no" details="" size="3619" time="0" location="/home/juaki/.ivy2/cache/org.graphstream/gs-core/ivy-1.1.1.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/graphstream/gs-core/1.1.1/gs-core-1.1.1.pom"/>
+				<caller organisation="default" name="visscala_sjs0.6_2.12" conf="compile" rev="1.1.1" rev-constraint-default="1.1.1" rev-constraint-dynamic="1.1.1" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="gs-core" type="jar" ext="jar" status="no" details="" size="735464" time="0" location="/home/juaki/.ivy2/cache/org.graphstream/gs-core/jars/gs-core-1.1.1.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/graphstream/gs-core/1.1.1/gs-core-1.1.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.graphstream" name="pherd">
+			<revision name="1.0" status="release" pubdate="20110517045741" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://graphstream-project.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="10">
+				<license name="LGPL3" url="http://www.gnu.org/copyleft/lesser.html"/>
+				<license name="Cecill-C" url="http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html       "/>
+				<metadata-artifact status="no" details="" size="3051" time="0" location="/home/juaki/.ivy2/cache/org.graphstream/pherd/ivy-1.0.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/graphstream/pherd/1.0/pherd-1.0.pom"/>
+				<caller organisation="org.graphstream" name="gs-core" conf="default, compile, runtime, master" rev="1.0" rev-constraint-default="1.0" rev-constraint-dynamic="1.0" callerrev="1.1.1"/>
+				<artifacts>
+					<artifact name="pherd" type="jar" ext="jar" status="no" details="" size="46227" time="0" location="/home/juaki/.ivy2/cache/org.graphstream/pherd/jars/pherd-1.0.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/graphstream/pherd/1.0/pherd-1.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.graphstream" name="mbox2">
+			<revision name="1.0" status="release" pubdate="20110517045724" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://graphstream-project.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="11">
+				<license name="LGPL3" url="http://www.gnu.org/copyleft/lesser.html"/>
+				<license name="Cecill-C" url="http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html       "/>
+				<metadata-artifact status="no" details="" size="3113" time="0" location="/home/juaki/.ivy2/cache/org.graphstream/mbox2/ivy-1.0.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/graphstream/mbox2/1.0/mbox2-1.0.pom"/>
+				<caller organisation="org.graphstream" name="gs-core" conf="default, compile, runtime, master" rev="1.0" rev-constraint-default="1.0" rev-constraint-dynamic="1.0" callerrev="1.1.1"/>
+				<caller organisation="org.graphstream" name="pherd" conf="compile, runtime" rev="1.0" rev-constraint-default="1.0" rev-constraint-dynamic="1.0" callerrev="1.0"/>
+				<artifacts>
+					<artifact name="mbox2" type="jar" ext="jar" status="no" details="" size="23238" time="0" location="/home/juaki/.ivy2/cache/org.graphstream/mbox2/jars/mbox2-1.0.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/graphstream/mbox2/1.0/mbox2-1.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="junit" name="junit">
+			<revision name="4.3.1" status="release" pubdate="20070514173407" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://junit.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="9">
+				<license name="Common Public License Version 1.0" url="http://www.opensource.org/licenses/cpl1.0.txt"/>
+				<metadata-artifact status="no" details="" size="2583" time="0" location="/home/juaki/.ivy2/cache/junit/junit/ivy-4.3.1.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/junit/junit/4.3.1/junit-4.3.1.pom"/>
+				<caller organisation="org.graphstream" name="gs-core" conf="default, compile, runtime, master" rev="4.3.1" rev-constraint-default="4.3.1" rev-constraint-dynamic="4.3.1" callerrev="1.1.1"/>
+				<artifacts>
+					<artifact name="junit" type="jar" ext="jar" status="no" details="" size="106547" time="0" location="/home/juaki/.ivy2/cache/junit/junit/jars/junit-4.3.1.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/junit/junit/4.3.1/junit-4.3.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.singlespaced" name="scalajs-d3_sjs0.6_2.12">
+			<revision name="0.3.4" status="release" pubdate="20170110172308" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/spaced/scala-js-d3" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="6">
+				<license name="BSD New" url="https://github.com/spaced/scala-js-d3/blob/master/LICENSE"/>
+				<metadata-artifact status="no" details="" size="3387" time="0" location="/home/juaki/.ivy2/cache/org.singlespaced/scalajs-d3_sjs0.6_2.12/ivy-0.3.4.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/singlespaced/scalajs-d3_sjs0.6_2.12/0.3.4/scalajs-d3_sjs0.6_2.12-0.3.4.pom"/>
+				<caller organisation="default" name="visscala_sjs0.6_2.12" conf="compile" rev="0.3.4" rev-constraint-default="0.3.4" rev-constraint-dynamic="0.3.4" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="scalajs-d3_sjs0.6_2.12" type="jar" ext="jar" status="no" details="" size="367612" time="0" location="/home/juaki/.ivy2/cache/org.singlespaced/scalajs-d3_sjs0.6_2.12/jars/scalajs-d3_sjs0.6_2.12-0.3.4.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/singlespaced/scalajs-d3_sjs0.6_2.12/0.3.4/scalajs-d3_sjs0.6_2.12-0.3.4.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.webjars" name="d3js">
+			<revision name="3.5.17" status="release" pubdate="20160529124323" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://webjars.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="7">
+				<license name="The BSD 3-Clause License" url="http://opensource.org/licenses/BSD-3-Clause"/>
+				<metadata-artifact status="no" details="" size="3818" time="0" location="/home/juaki/.ivy2/cache/org.webjars/d3js/ivy-3.5.17.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/webjars/d3js/3.5.17/d3js-3.5.17.pom"/>
+				<caller organisation="org.singlespaced" name="scalajs-d3_sjs0.6_2.12" conf="default, compile, runtime, master" rev="3.5.17" rev-constraint-default="3.5.17" rev-constraint-dynamic="3.5.17" callerrev="0.3.4"/>
+				<artifacts>
+					<artifact name="d3js" type="jar" ext="jar" status="no" details="" size="130856" time="0" location="/home/juaki/.ivy2/cache/org.webjars/d3js/jars/d3js-3.5.17.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/webjars/d3js/3.5.17/d3js-3.5.17.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="be.doeraene" name="scalajs-jquery_sjs0.6_2.12">
+			<revision name="0.9.1" status="release" pubdate="20161029123810" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://scala-js.org/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="5">
+				<license name="BSD 3-Clause" url="http://opensource.org/licenses/BSD-3-Clause"/>
+				<metadata-artifact status="no" details="" size="3109" time="0" location="/home/juaki/.ivy2/cache/be.doeraene/scalajs-jquery_sjs0.6_2.12/ivy-0.9.1.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/be/doeraene/scalajs-jquery_sjs0.6_2.12/0.9.1/scalajs-jquery_sjs0.6_2.12-0.9.1.pom"/>
+				<caller organisation="default" name="visscala_sjs0.6_2.12" conf="compile" rev="0.9.1" rev-constraint-default="0.9.1" rev-constraint-dynamic="0.9.1" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="scalajs-jquery_sjs0.6_2.12" type="jar" ext="jar" status="no" details="" size="63022" time="0" location="/home/juaki/.ivy2/cache/be.doeraene/scalajs-jquery_sjs0.6_2.12/jars/scalajs-jquery_sjs0.6_2.12-0.9.1.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/be/doeraene/scalajs-jquery_sjs0.6_2.12/0.9.1/scalajs-jquery_sjs0.6_2.12-0.9.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-js" name="scalajs-dom_sjs0.6_2.12">
+			<revision name="0.9.1" status="release" pubdate="20161029050109" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://scala-js.org/" downloaded="false" searched="false" default="false" conf="default, compile, runtime(*), master(compile), runtime, default(compile), compile(*), master" position="4">
+				<license name="MIT" url="http://opensource.org/licenses/mit-license.php"/>
+				<metadata-artifact status="no" details="" size="2941" time="0" location="/home/juaki/.ivy2/cache/org.scala-js/scalajs-dom_sjs0.6_2.12/ivy-0.9.1.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scala-js/scalajs-dom_sjs0.6_2.12/0.9.1/scalajs-dom_sjs0.6_2.12-0.9.1.pom"/>
+				<caller organisation="default" name="visscala_sjs0.6_2.12" conf="compile" rev="0.9.1" rev-constraint-default="0.9.1" rev-constraint-dynamic="0.9.1" callerrev="0.1"/>
+				<caller organisation="org.singlespaced" name="scalajs-d3_sjs0.6_2.12" conf="default, compile, runtime, master" rev="0.9.1" rev-constraint-default="0.9.1" rev-constraint-dynamic="0.9.1" callerrev="0.3.4"/>
+				<caller organisation="be.doeraene" name="scalajs-jquery_sjs0.6_2.12" conf="default, compile, runtime, master" rev="0.9.1" rev-constraint-default="0.9.1" rev-constraint-dynamic="0.9.1" callerrev="0.9.1"/>
+				<artifacts>
+					<artifact name="scalajs-dom_sjs0.6_2.12" type="jar" ext="jar" status="no" details="" size="1910061" time="0" location="/home/juaki/.ivy2/cache/org.scala-js/scalajs-dom_sjs0.6_2.12/jars/scalajs-dom_sjs0.6_2.12-0.9.1.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/scala-js/scalajs-dom_sjs0.6_2.12/0.9.1/scalajs-dom_sjs0.6_2.12-0.9.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.jocl" name="jocl">
+			<revision name="2.0.0" status="release" pubdate="20160512141447" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.jocl.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="3">
+				<license name="MIT" url="http://jocl.org/downloads/LICENSE.TXT"/>
+				<metadata-artifact status="no" details="" size="3237" time="0" location="/home/juaki/.ivy2/cache/org.jocl/jocl/ivy-2.0.0.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/jocl/jocl/2.0.0/jocl-2.0.0.pom"/>
+				<caller organisation="default" name="visscala_sjs0.6_2.12" conf="compile" rev="2.0.0" rev-constraint-default="2.0.0" rev-constraint-dynamic="2.0.0" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="jocl" type="jar" ext="jar" status="no" details="" size="362969" time="0" location="/home/juaki/.ivy2/cache/org.jocl/jocl/jars/jocl-2.0.0.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/jocl/jocl/2.0.0/jocl-2.0.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-js" name="scalajs-library_2.12">
+			<revision name="0.6.21" status="release" pubdate="20171103093007" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://scala-js.org/" extra-info.apiURL="http://www.scala-js.org/api/scalajs-library/0.6.21/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master, runtime(*), master(compile), compile(*)" position="2">
+				<license name="BSD New" url="https://github.com/scala-js/scala-js/blob/master/LICENSE"/>
+				<metadata-artifact status="no" details="" size="2996" time="0" location="/home/juaki/.ivy2/cache/org.scala-js/scalajs-library_2.12/ivy-0.6.21.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scala-js/scalajs-library_2.12/0.6.21/scalajs-library_2.12-0.6.21.pom"/>
+				<caller organisation="default" name="visscala_sjs0.6_2.12" conf="compile" rev="0.6.21" rev-constraint-default="0.6.21" rev-constraint-dynamic="0.6.21" callerrev="0.1"/>
+				<caller organisation="org.singlespaced" name="scalajs-d3_sjs0.6_2.12" conf="default, compile, runtime, master" rev="0.6.13" rev-constraint-default="0.6.13" rev-constraint-dynamic="0.6.13" callerrev="0.3.4"/>
+				<caller organisation="be.doeraene" name="scalajs-jquery_sjs0.6_2.12" conf="default, compile, runtime, master" rev="0.6.13" rev-constraint-default="0.6.13" rev-constraint-dynamic="0.6.13" callerrev="0.9.1"/>
+				<caller organisation="org.scala-js" name="scalajs-dom_sjs0.6_2.12" conf="default, compile, runtime, master" rev="0.6.13" rev-constraint-default="0.6.13" rev-constraint-dynamic="0.6.13" callerrev="0.9.1"/>
+				<artifacts>
+					<artifact name="scalajs-library_2.12" type="jar" ext="jar" status="no" details="" size="6493416" time="0" location="/home/juaki/.ivy2/cache/org.scala-js/scalajs-library_2.12/jars/scalajs-library_2.12-0.6.21.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/scala-js/scalajs-library_2.12/0.6.21/scalajs-library_2.12-0.6.21.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="0.6.13" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master, default, default(compile)" position="-1">
+				<evicted-by rev="0.6.21"/>
+				<caller organisation="default" name="visscala_sjs0.6_2.12" conf="compile" rev="0.6.21" rev-constraint-default="0.6.21" rev-constraint-dynamic="0.6.21" callerrev="0.1"/>
+				<caller organisation="org.singlespaced" name="scalajs-d3_sjs0.6_2.12" conf="default, compile, runtime, master" rev="0.6.13" rev-constraint-default="0.6.13" rev-constraint-dynamic="0.6.13" callerrev="0.3.4"/>
+				<caller organisation="be.doeraene" name="scalajs-jquery_sjs0.6_2.12" conf="default, compile, runtime, master" rev="0.6.13" rev-constraint-default="0.6.13" rev-constraint-dynamic="0.6.13" callerrev="0.9.1"/>
+				<caller organisation="org.scala-js" name="scalajs-dom_sjs0.6_2.12" conf="default, compile, runtime, master" rev="0.6.13" rev-constraint-default="0.6.13" rev-constraint-dynamic="0.6.13" callerrev="0.9.1"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.webjars" name="jquery">
+			<revision name="2.1.4" status="release" pubdate="20150430024105" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://webjars.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="1">
+				<license name="MIT License" url="https://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt"/>
+				<metadata-artifact status="no" details="" size="3754" time="0" location="/home/juaki/.ivy2/cache/org.webjars/jquery/ivy-2.1.4.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/webjars/jquery/2.1.4/jquery-2.1.4.pom"/>
+				<caller organisation="default" name="visscala_sjs0.6_2.12" conf="compile" rev="2.1.4" rev-constraint-default="2.1.4" rev-constraint-dynamic="2.1.4" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="jquery" type="jar" ext="jar" status="no" details="" size="158370" time="0" location="/home/juaki/.ivy2/cache/org.webjars/jquery/jars/jquery-2.1.4.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/webjars/jquery/2.1.4/jquery-2.1.4.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-library">
+			<revision name="2.12.4" status="release" pubdate="20171011040456" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.12.4/" downloaded="false" searched="false" default="false" conf="default, compile, runtime(*), master(compile), runtime, default(compile), compile(*), master" position="0">
+				<license name="BSD 3-Clause" url="http://www.scala-lang.org/license.html"/>
+				<metadata-artifact status="no" details="" size="2471" time="0" location="/home/juaki/.ivy2/cache/org.scala-lang/scala-library/ivy-2.12.4.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.4/scala-library-2.12.4.pom"/>
+				<caller organisation="default" name="visscala_sjs0.6_2.12" conf="compile" rev="2.12.4" rev-constraint-default="2.12.4" rev-constraint-dynamic="2.12.4" callerrev="0.1"/>
+				<caller organisation="org.singlespaced" name="scalajs-d3_sjs0.6_2.12" conf="default, compile, runtime, master" rev="2.12.4" rev-constraint-default="2.12.4" rev-constraint-dynamic="2.12.4" callerrev="0.3.4"/>
+				<caller organisation="org.scala-js" name="scalajs-library_2.12" conf="default, compile, runtime, master" rev="2.12.4" rev-constraint-default="2.12.4" rev-constraint-dynamic="2.12.4" callerrev="0.6.21"/>
+				<caller organisation="be.doeraene" name="scalajs-jquery_sjs0.6_2.12" conf="default, compile, runtime, master" rev="2.12.4" rev-constraint-default="2.12.4" rev-constraint-dynamic="2.12.4" callerrev="0.9.1"/>
+				<caller organisation="org.scala-js" name="scalajs-dom_sjs0.6_2.12" conf="default, compile, runtime, master" rev="2.12.4" rev-constraint-default="2.12.4" rev-constraint-dynamic="2.12.4" callerrev="0.9.1"/>
+				<artifacts>
+					<artifact name="scala-library" type="jar" ext="jar" status="no" details="" size="5247152" time="0" location="/home/juaki/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.12.4.jar">
+						<origin-location is-local="false" location="UNKNOWN"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+	</dependencies>
+</ivy-report>

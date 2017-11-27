@@ -1,0 +1,1 @@
+[error] sbt.librarymanagement.ResolveException: unresolved dependency: org.graphstream#gs-core_sjs0.6_2.12;1.1.1: not found
