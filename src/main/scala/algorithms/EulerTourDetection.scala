@@ -7,10 +7,10 @@ import org.jocl._
 
 import scala.Array.ofDim
 
-object EulerTour {
+object EulerTourDetection {
 
   private val memObjects = ofDim[cl_mem](3)
-  private val programSource =
+  private val eulerTourDetectionProgram =
     """__kernel void eulerTourDetect(__global const int *nodes,
       |                           __global const int *edges,
       |                           __global int *degree,
@@ -58,7 +58,7 @@ object EulerTour {
       Sizeof.cl_int * nodeSize, null, null)
 
     // Create the program from the source code
-    program = clCreateProgramWithSource(OpenCLInit.getContext, 1, Array(programSource),
+    program = clCreateProgramWithSource(OpenCLInit.getContext, 1, Array(eulerTourDetectionProgram),
       null, null)
 
     // Build the program
@@ -91,7 +91,7 @@ object EulerTour {
       Sizeof.cl_int * nodeSize, dst , 0, null, null)
 
     // Hay camino euleriano en caso de tener 2 o menos nodos con grado impar
-    dstArray(0) < 3
+    dstArray(0) == 2 || dstArray(0) == 0
   }
 
   def destroy(): Unit ={

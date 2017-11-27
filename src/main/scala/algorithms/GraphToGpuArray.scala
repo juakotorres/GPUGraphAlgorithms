@@ -1,24 +1,28 @@
 package algorithms
 
+import java.util.{Arrays => jArrays}
 
 import org.graphstream.graph.{Edge, Node}
 
 import scala.collection.mutable
+import scala.collection.immutable
+import scala.collection.immutable.ListMap
 
 object GraphToGpuArray {
 
   private var nodesHashMap: scala.collection.mutable.Map[String, Int] = _
   private var edgesHashMap: scala.collection.mutable.Map[String, List[Int]] = _
   private var changed: Boolean = true
-  private var nodesArray: Array[Int] = _
-  private var edgesArray: Array[Int] = _
+  private var nodesArray, edgesArray: Array[Int] = _
+  private var V1Array, V2Array: Array[Int] = _
 
   def Init(): Unit = {
     initEdgeArray()
     initNodeArray()
   }
 
-  def buildGpuArrays(): Unit = {
+  private def buildGpuArrays(): Unit = {
+    buildGpuArraysV2()
     val nodeList : mutable.ListBuffer[Int] = mutable.ListBuffer.empty[Int]
     val edgeList : mutable.ListBuffer[Int] = mutable.ListBuffer.empty[Int]
 
@@ -36,6 +40,34 @@ object GraphToGpuArray {
     changed = false
   }
 
+  private def buildGpuArraysV2() : Unit = {
+    val V1 : mutable.ListBuffer[Int] = mutable.ListBuffer.empty[Int]
+    val V2 : mutable.ListBuffer[Int] = mutable.ListBuffer.empty[Int]
+    val visited : mutable.ListBuffer[(Int, Int)] = mutable.ListBuffer.empty[(Int, Int)]
+
+    val hashList : immutable.ListMap[String, Int] = ListMap(nodesHashMap.toSeq.sortBy(_._1):_*)
+    for ((k, _) <- hashList) {
+      var nodeEdgeList : List[Int] = edgesHashMap(k)
+      nodeEdgeList =  nodeEdgeList.sorted
+
+      val vertex1 : Int = k.toInt
+      nodeEdgeList.foreach(vertex2 => {
+        if(!visited.exists(p => (p._1.equals(vertex1) && p._2.equals(vertex2))
+          || (p._1.equals(vertex2) && p._2.equals(vertex1)))){
+          visited += ((vertex1, vertex2))
+          V1 += vertex1
+          V2 += vertex2
+        }
+      })
+    }
+
+    V1Array = V1.toArray
+    V2Array = V2.toArray
+
+    //println(jArrays.toString(V1Array))
+    //println(jArrays.toString(V2Array))
+  }
+
   def getGpuNodeArray: Array[Int] = {
     if (changed) buildGpuArrays()
     nodesArray
@@ -44,6 +76,16 @@ object GraphToGpuArray {
   def getGpuEdgeArray: Array[Int] = {
     if (changed) buildGpuArrays()
     edgesArray
+  }
+
+  def getGpuV1Array : Array[Int] = {
+    if (changed) buildGpuArrays()
+    V1Array
+  }
+
+  def getGpuV2Array : Array[Int] = {
+    if (changed) buildGpuArrays()
+    V2Array
   }
 
   private def initNodeArray(): Unit = nodesHashMap = scala.collection.mutable.Map.empty[String, Int]

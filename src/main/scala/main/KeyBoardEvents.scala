@@ -2,7 +2,7 @@ package main
 
 import java.awt.event.KeyEvent
 
-import algorithms.{EulerTour, GraphToGpuArray}
+import algorithms.{EulerTourConstruction, EulerTourDetection, GraphToGpuArray}
 import org.graphstream.graph.Graph
 import org.graphstream.ui.swingViewer.View
 import org.graphstream.ui.swingViewer.util.ShortcutManager
@@ -14,9 +14,16 @@ class KeyBoardEvents(graph: Graph, view : View) extends ShortcutManager(view){
     super.keyPressed(event)
 
     if (event.getKeyCode == KeyEvent.VK_E) { // Calcular el camino euleriano
-      EulerTour.EulerTourInit(GraphToGpuArray.getGpuNodeArray, GraphToGpuArray.getGpuEdgeArray)
-      if(EulerTour.eulerTourDetection())
+      EulerTourDetection.EulerTourInit(GraphToGpuArray.getGpuNodeArray, GraphToGpuArray.getGpuEdgeArray)
+      if(EulerTourDetection.eulerTourDetection()) {
+        EulerTourConstruction.EulerTourInit(GraphToGpuArray.getGpuV1Array,
+          GraphToGpuArray.getGpuV2Array, graph.getNodeCount)
+        EulerTourConstruction.eulerTour()
         println("Tiene camino euleriano!!")
+      }
+      else{
+        println("No tiene perrrs")
+      }
     } else if (event.getKeyCode == KeyEvent.VK_R) { // Eliminar nodo del grafo.
       val position = this.view.getMousePosition(true)
       val currentElement = view.findNodeOrSpriteAt(position.getX, position.getY)
