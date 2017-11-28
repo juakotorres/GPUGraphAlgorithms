@@ -1,15 +1,19 @@
 package algorithms
 
 import java.util.{Arrays => jArrays}
+
 import gpu.utils.OpenCLInit
 import org.jocl.CL._
 import org.jocl._
+import util.control.Breaks._
 
 import scala.Array.ofDim
+import scala.collection.mutable
 
 object EulerTourConstruction {
 
   private val memObjects = ofDim[cl_mem](10)
+  private val memDegree = ofDim[cl_mem](2)
 
   private val eulerTourSorting =
     """
@@ -18,8 +22,8 @@ object EulerTourConstruction {
       |                            __global int *v1v2){
       |
       |  int gid = get_global_id(0);
-      |  v1v2[2*(gid - 1) + 1] = vertex1[gid];
-      |  v1v2[2*gid] = vertex2[gid];
+      |  v1v2[2*gid] = vertex1[gid];
+      |  v1v2[2*gid + 1] = vertex2[gid];
       |
       |}
     """.stripMargin
@@ -34,12 +38,12 @@ object EulerTourConstruction {
       |
       |    if (gid < m - 1) {
       |       if(v1v2[2*gid] != v1v2[2*gid + 1]) {
-      |         boundaries[v1v2[2*gid]] = 2*gid + 1;
+      |         boundaries[v1v2[2*gid] - 1] = 2*gid + 1;
       |       } else if(v1v2[2*gid + 1] != v1v2[2*gid + 2]){
-      |         boundaries[v1v2[2*gid + 1]] = 2*gid + 2;
+      |         boundaries[v1v2[2*gid + 1] - 1] = 2*gid + 2;
       |       }
       |    } else {
-      |       boundaries[v1v2[2*gid]] = 2*m;
+      |       boundaries[v1v2[2*gid] - 1] = 2*m;
       |    }
       |
       |}
@@ -61,7 +65,23 @@ object EulerTourConstruction {
       |       degree[gid] = boundaries[gid] - boundaries[gid - 1];
       |    }
       |
-      |    degree[gid] = degree[gid]/2 + degree[gid] % 2;
+      |}
+    """.stripMargin
+
+  private val getOddAndDegree =
+    """
+      |__kernel void getOddAndDegree(__global int *degree,
+      |                                 __global int *ndegree,
+      |                                 __global int *odd,
+      |                                  const int n){
+      |
+      |    int gid = get_global_id(0);
+      |
+      |    if(gid > 0 && gid < n && degree[gid] % 2 == 1 && degree[gid - 1] % 2 != 1){
+      |       odd[0] = gid + 1;
+      |    }
+      |
+      |    ndegree[gid] = degree[gid]/2 + degree[gid] % 2;
       |}
     """.stripMargin
 
@@ -125,48 +145,70 @@ object EulerTourConstruction {
     """.stripMargin
 
   private val eulerTourDetectionProgram =
-    """__kernel void eulerTourDetect(__global const int *vertex1,
-      |                           __global const int *vertex2,
-      |                           __global const int *boundaries,
-      |                           __global int *degree,
+    """__kernel void eulerTourDetect(__global const int *boundaries,
       |                           __global const int *v1v2,
-      |                           __global int *N,
       |                           __global int *S,
       |                           __global int *nv1v2,
-      |                           __global int *nv1,
-      |                           __global int *nv2,
-      |                           const int n,
+      |                           const int odd,
       |                           const int m){
       |
       |    int gid = get_global_id(0);
       |
-      |    if(gid == 0){
-      |       degree[gid] = boundaries[gid];
+      |    int e1 = 2*gid;
+      |    int e2 = 2*gid + 1;
+      |    int sum1 = e1 + 1;
+      |    int sum2 = e2 + 1;
+      |
+      |    if(e1 == odd){
+      |       sum1 = e1 + 2;
+      |    } else if (e2 == odd) {
+      |       sum2 = e2 + 2;
       |    }
       |
-      |    if (gid != 0 && gid < n) {
-      |       degree[gid] = boundaries[gid] - boundaries[gid - 1];
+      |    int v1v2e1 = v1v2[e1] - 1;
+      |    int v1v2e2 = v1v2[e2] - 1;
+      |    int se1 = 0;
+      |    int se2 = 0;
+      |    int be1 = 0;
+      |    int be2 = 0;
+      |
+      |    if (v1v2e1 >= 0){
+      |       se1 = S[v1v2e1];
+      |       be1 = boundaries[v1v2e1];
       |    }
       |
-      |    nv1[gid] = gid;
+      |    if (v1v2e2 >= 0){
+      |       se2 = S[v1v2e2];
+      |       be2 = boundaries[v1v2e2];
+      |    }
+      |
+      |    nv1v2[e1] = se1 + (sum1 - be1)/2;
+      |    nv1v2[e2] = se2 + (sum2 - be2)/2;
       |
       |
       |}""".stripMargin
   private var kernel, kernel2, kernel3,
               kernel4, kernel5, kernel6,
-              kernel7 : cl_kernel = _
+              kernel7, kernel8 : cl_kernel = _
   private var program, program2, program3,
               program4, program5, program6,
-              program7 : cl_program =_
+              program7, program8 : cl_program =_
   private var srcA, srcB, v1, v2 : Pointer = _
   private var n, m : Int = 0
   private var v1Array, v2Array : Array[Int] = _
   private var NSize : Int = _
+  private var oddNode : Int = _
+  private var NArray : Array[Int] = _
+  private var V1x, V2x : Array[Int] = _
 
   def EulerTourInit(vertex1Array : Array[Int], vertex2Array: Array[Int], numberOfNodes : Int): Unit = {
 
     n = numberOfNodes
-    println(n)
+    println("number of nodes: "+ n)
+    println("Array v1: " + jArrays.toString(vertex1Array))
+    println("Array v2: " + jArrays.toString(vertex2Array))
+    V1x = vertex1Array
+    V2x = vertex2Array
     m = vertex2Array.length
 
     v1Array = ofDim[Int](m)
@@ -233,6 +275,9 @@ object EulerTourConstruction {
     // Create the program from the source code
     program7 = clCreateProgramWithSource(OpenCLInit.getContext, 1, Array(fillTable),
       null, null)
+    // Create the program from the source code
+    program8 = clCreateProgramWithSource(OpenCLInit.getContext, 1, Array(getOddAndDegree),
+      null, null)
 
 
 
@@ -244,6 +289,7 @@ object EulerTourConstruction {
     clBuildProgram(program5, 0, null, null, null, null)
     clBuildProgram(program6, 0, null, null, null, null)
     clBuildProgram(program7, 0, null, null, null, null)
+    clBuildProgram(program8, 0, null, null, null, null)
 
     // Create the kernel
     kernel = clCreateKernel(program, "eulerTourDetect", null)
@@ -253,6 +299,7 @@ object EulerTourConstruction {
     kernel5 = clCreateKernel(program5, "prefixSum", null)
     kernel6 = clCreateKernel(program6, "N", null)
     kernel7 = clCreateKernel(program7, "fillTable", null)
+    kernel8 = clCreateKernel(program8, "getOddAndDegree", null)
   }
 
   def eulerTourCalculateBoundaries(): Unit = {
@@ -279,7 +326,7 @@ object EulerTourConstruction {
       CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
       Sizeof.cl_int * n, Pointer.to(boundaries), null)
 
-    println(jArrays.toString(boundaries))
+    println("boundaries: " + jArrays.toString(boundaries))
   }
 
 
@@ -307,7 +354,7 @@ object EulerTourConstruction {
       CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
       Sizeof.cl_int * 2 * m, Pointer.to(v1v2Array.sorted), null)
 
-    println(jArrays.toString(v1v2Array.sorted))
+    println("v1v2 array: " + jArrays.toString(v1v2Array.sorted))
   }
 
   def eulerTourDegree() : Unit = {
@@ -328,12 +375,56 @@ object EulerTourConstruction {
     clEnqueueReadBuffer(OpenCLInit.getCommandQueue, memObjects(3), CL_TRUE, 0,
       Sizeof.cl_int * n, Pointer.to(degree) , 0, null, null)
 
+    // degree
+    memObjects(3) = clCreateBuffer(OpenCLInit.getContext,
+      CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
+      Sizeof.cl_int * n, Pointer.to(degree), null)
+
+    println("Original Degree:" + jArrays.toString(degree))
+  }
+
+
+  def getOddAndDegreeCall() : Unit = {
+    // Set the work-item dimensions
+    val global_work_size = Array(n.toLong)
+    val local_work_size = Array(1L)
+
+    val nDegree = ofDim[Int](n)
+    val odd = ofDim[Int](n)
+
+    memDegree(0) = clCreateBuffer(OpenCLInit.getContext,
+      CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
+      Sizeof.cl_int * n, Pointer.to(nDegree), null)
+
+    memDegree(1) = clCreateBuffer(OpenCLInit.getContext,
+      CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
+      Sizeof.cl_int * n, Pointer.to(odd), null)
+
+
+    clSetKernelArg(kernel8, 0, Sizeof.cl_mem, Pointer.to(memObjects(3)))
+    clSetKernelArg(kernel8, 1, Sizeof.cl_mem, Pointer.to(memDegree(0)))
+    clSetKernelArg(kernel8, 2, Sizeof.cl_mem, Pointer.to(memDegree(1)))
+    clSetKernelArg(kernel8, 3, Sizeof.cl_int, Pointer.to(Array[Int](n)))
+
+    // Execute the kernel
+    clEnqueueNDRangeKernel(OpenCLInit.getCommandQueue, kernel8, 1, null, global_work_size,
+      local_work_size, 0, null, null)
+
+    val degree = ofDim[Int](n)
+
+    clEnqueueReadBuffer(OpenCLInit.getCommandQueue, memDegree(0), CL_TRUE, 0,
+      Sizeof.cl_int * n, Pointer.to(degree) , 0, null, null)
+    clEnqueueReadBuffer(OpenCLInit.getCommandQueue, memDegree(1), CL_TRUE, 0,
+      Sizeof.cl_int * n, Pointer.to(odd) , 0, null, null)
+
     // v1v2
     memObjects(3) = clCreateBuffer(OpenCLInit.getContext,
       CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
       Sizeof.cl_int * n, Pointer.to(degree), null)
 
-    println(jArrays.toString(degree))
+    oddNode = odd(0)
+    println("Degree : " + jArrays.toString(degree))
+    println("Odd vertex : " + odd(0))
   }
 
   def prefixSumDegree() : Unit = {
@@ -366,7 +457,7 @@ object EulerTourConstruction {
       CL_MEM_WRITE_ONLY,
       Sizeof.cl_int * NSize, null, null)
 
-    println(jArrays.toString(prefixSum))
+    println("S Array (PrefixSum): "+ jArrays.toString(prefixSum))
   }
 
   def getCorrespondenceTable() : Unit = {
@@ -393,7 +484,7 @@ object EulerTourConstruction {
       CL_MEM_WRITE_ONLY | CL_MEM_COPY_HOST_PTR,
       Sizeof.cl_int * NSize, Pointer.to(N), null)
 
-    println(jArrays.toString(N))
+    println("Correspondence table: " + jArrays.toString(N))
   }
 
   def fillTableN() : Unit = {
@@ -418,7 +509,9 @@ object EulerTourConstruction {
       CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
       Sizeof.cl_int * NSize, Pointer.to(N), null)
 
-    println(jArrays.toString(N))
+    NArray = N
+
+    println("Ready fill table: " + jArrays.toString(N))
   }
 
   def eulerTour(): Unit ={
@@ -430,32 +523,119 @@ object EulerTourConstruction {
     eulerTourConstructV1V2()
     eulerTourCalculateBoundaries()
     eulerTourDegree()
+    getOddAndDegreeCall()
     prefixSumDegree()
     getCorrespondenceTable()
     fillTableN()
 
-    // Set the arguments for the kernel
-    for (i <- memObjects.indices) {
-      clSetKernelArg(kernel, i, Sizeof.cl_mem, Pointer.to(memObjects(i)))
-    }
-    clSetKernelArg(kernel, 10, Sizeof.cl_int, Pointer.to(Array[Int](n)))
-    clSetKernelArg(kernel, 11, Sizeof.cl_int, Pointer.to(Array[Int](m)))
+    clSetKernelArg(kernel, 0, Sizeof.cl_mem, Pointer.to(memObjects(2)))
+    clSetKernelArg(kernel, 1, Sizeof.cl_mem, Pointer.to(memObjects(4)))
+    clSetKernelArg(kernel, 2, Sizeof.cl_mem, Pointer.to(memObjects(6)))
+    clSetKernelArg(kernel, 3, Sizeof.cl_mem, Pointer.to(memObjects(7)))
+    clSetKernelArg(kernel, 4, Sizeof.cl_int, Pointer.to(Array[Int](oddNode)))
+    clSetKernelArg(kernel, 5, Sizeof.cl_int, Pointer.to(Array[Int](m)))
 
     // Execute the kernel
     clEnqueueNDRangeKernel(OpenCLInit.getCommandQueue, kernel, 1, null, global_work_size,
       local_work_size, 0, null, null)
 
     // Read the output data
-    clEnqueueReadBuffer(OpenCLInit.getCommandQueue, memObjects(8), CL_TRUE, 0,
+    /*clEnqueueReadBuffer(OpenCLInit.getCommandQueue, memObjects(8), CL_TRUE, 0,
       Sizeof.cl_int * m, v1 , 0, null, null)
-    /*clEnqueueReadBuffer(OpenCLInit.getCommandQueue, memObjects(9), CL_TRUE, 0,
+    clEnqueueReadBuffer(OpenCLInit.getCommandQueue, memObjects(9), CL_TRUE, 0,
       Sizeof.cl_int * m, v2 , 0, null, null)*/
 
-    val degree = ofDim[Int](n)
+    val nv1v2 = ofDim[Int](2*m)
 
 
-    clEnqueueReadBuffer(OpenCLInit.getCommandQueue, memObjects(3), CL_TRUE, 0,
-      Sizeof.cl_int * n, Pointer.to(degree) , 0, null, null)
+    clEnqueueReadBuffer(OpenCLInit.getCommandQueue, memObjects(7), CL_TRUE, 0,
+      Sizeof.cl_int * 2 * m, Pointer.to(nv1v2) , 0, null, null)
+
+    println("nv1v2 array: " + jArrays.toString(nv1v2))
+
+
+    val V1 : mutable.ListBuffer[Int] = mutable.ListBuffer.empty[Int]
+    V1x.copyToBuffer(V1)
+    val V1Boolean : mutable.ListBuffer[Boolean] = mutable.ListBuffer.empty[Boolean]
+    val V2Boolean : mutable.ListBuffer[Boolean] = mutable.ListBuffer.empty[Boolean]
+    val V2 : mutable.ListBuffer[Int] = mutable.ListBuffer.empty[Int]
+    V2x.copyToBuffer(V2)
+
+    println("array v1" + V1)
+    println("array v2" + V2)
+    for(_ <- 0 to V1x.length) {
+      V1Boolean.+=(false)
+      V2Boolean.+=(false)
+    }
+
+    nv1v2.foreach(f => {
+      val Nf : Int = NArray(f - 1)
+      var V1Index : Int = 0
+      var V2Index : Int = 0
+      breakable {
+        for(i <- V1.indices){
+          if(V1(i) == Nf && !V1Boolean(i)){
+            V1Index = i
+            break
+          }
+          V1Index = i
+        }
+      }
+
+      breakable {
+        for(i <- V2.indices){
+          if(V2(i) == Nf && !V2Boolean(i)){
+            V2Index = i
+            break
+          }
+          V2Index = i
+        }
+      }
+
+      if(V1Index <= V2Index){
+        V1(V1Index) = f
+        V1Boolean(V1Index) = true
+      } else {
+        V2(V2Index) = f
+        V2Boolean(V2Index) = true
+      }
+    })
+
+    //println(V1)
+    //println(V2)
+    var filterListV : mutable.ListBuffer[Int] = mutable.ListBuffer.empty[Int]
+
+    filterListV = filterListV ++ V1 ++ V2
+    var firstNode : Int = 0
+
+    filterListV.groupBy(identity).mapValues(_.size).foreach(f => if(f._2 == 1) firstNode = f._1)
+    for(i <- 0 to V1x.length) {
+      V1Boolean(i) = false
+    }
+
+    //println(V1Boolean)
+    var finalList : mutable.ListBuffer[Int] = mutable.ListBuffer.empty[Int]
+    finalList += firstNode
+    while(finalList.length < NArray.length) {
+      breakable {
+        for (i <- V1.indices) {
+          if (V1(i) == firstNode && !V1Boolean(i)) {
+            finalList += V2(i)
+            V1Boolean(i) = true
+            firstNode = V2(i)
+            break
+          } else if (V2(i) == firstNode && !V1Boolean(i)) {
+            finalList += V1(i)
+            V1Boolean(i) = true
+            firstNode = V1(i)
+            break
+          }
+        }
+      }
+    }
+
+
+    println("Euler tour" + finalList)
   }
 
   def destroy(): Unit ={
